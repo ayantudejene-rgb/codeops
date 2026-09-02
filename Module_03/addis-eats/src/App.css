@@ -1,0 +1,31 @@
+body {
+    font-family: system-ui, sans-serif;
+    background: #f8fafc;
+    padding: 2rem;
+}
+.menu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+.dish-card {
+    background: white;
+    padding: 1rem;
+    border-radius: 10px;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+}
+.dish-card h3 {
+    margin: 0 0 0.2rem 0;
+    color: #0b2a4a;
+}
+.dish-card p {
+    font-weight: 700;
+    color: #1B4D8E;
+    margin: 0.2rem 0;
+}
+.dish-card span {
+    font-size: 0.8rem;
+    color: #b33b3b;
+}
