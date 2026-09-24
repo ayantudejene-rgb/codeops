@@ -1,0 +1,7 @@
+[
+  { "id": "doro-wat", "name": "Doro Wat", "price": 500, "category": "Main", "spicy": true },
+  { "id": "shiro", "name": "Shiro", "price": 200, "category": "Vegan", "spicy": false },
+  { "id": "tibs", "name": "Tibs", "price": 500, "category": "Grill", "spicy": true },
+  { "id": "kitfo", "name": "Kitfo", "price": 500, "category": "Main", "spicy": true },
+  { "id": "beyaynet", "name": "Beyaynet", "price": 200, "category": "Vegan", "spicy": false }
+]
