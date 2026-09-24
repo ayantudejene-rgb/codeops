@@ -1,43 +1,39 @@
+import { useState } from "react";
 import PropTypes from "prop-types";
-import Dish from "./Dish";
-import Card from "./Card";
+import CategoryBar from "./CategoryBar";
+import DishList from "./DishList";
+import OrderForm from "./OrderForm";
 
-function Menu({ dishes, category = "All" }) {
-  if (!dishes || dishes.length === 0) {
-    return <p>No dishes found.</p>;
-  }
+function Menu({ dishes }) {
+  const [category, setCategory] = useState("All");
+  const [total, setTotal] = useState(0);
 
   const filteredDishes =
     category === "All"
       ? dishes
-      : dishes.filter((dish) => dish.category === category);
+      : dishes.filter((d) => d.category === category);
 
-  if (filteredDishes.length === 0) {
-    return <p>No dishes found in {category}.</p>;
+  function addToOrder(price) {
+    setTotal(total + price);
   }
 
   return (
-    <div className="menu">
-      {filteredDishes.map((dish) => (
-        <Card key={dish.id}>
-          <Dish {...dish} />
-        </Card>
-      ))}
+    <div>
+      <CategoryBar selected={category} onSelect={setCategory} />
+      
+      <DishList dishes={filteredDishes} onAddToOrder={addToOrder} />
+      
+      <div className="order-total">
+        <h3>Order Total: {total} ETB</h3>
+      </div>
+
+      <OrderForm />
     </div>
   );
 }
 
 Menu.propTypes = {
-  dishes: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.string.isRequired,
-      name: PropTypes.string.isRequired,
-      price: PropTypes.number.isRequired,
-      category: PropTypes.string.isRequired,
-      spicy: PropTypes.bool,
-    })
-  ).isRequired,
-  category: PropTypes.string,
+  dishes: PropTypes.array.isRequired,
 };
 
 export default Menu;

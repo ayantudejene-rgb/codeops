@@ -1,10 +1,73 @@
-.card {
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  padding: 12px;
-  margin: 8px 0;
+.category-bar {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
 }
 
-.dish h3 {
-  margin: 0 0 4px;
+.chip {
+  padding: 6px 14px;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  background: white;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.chip.on {
+  background: #2c3e50;
+  color: white;
+  border-color: #2c3e50;
+}
+
+.order-total {
+  margin-top: 20px;
+  padding: 12px;
+  background: #f4f4f4;
+  border-radius: 8px;
+  font-weight: bold;
+}
+
+.order-form {
+  margin-top: 24px;
+  padding: 16px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-width: 400px;
+}
+
+.order-form div {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.order-form input, .order-form select {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.err {
+  color: red;
+  font-size: 0.85em;
+  margin: 0;
+}
+
+.order-form button {
+  padding: 10px;
+  background: #2ecc71;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.order-form button:disabled {
+  background: #bdc3c7;
+  cursor: not-allowed;
 }

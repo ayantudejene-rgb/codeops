@@ -6,8 +6,7 @@ function App() {
     return (
         <div>
             <Header />
-            {/* Change "Main" to "Vegetarian" or "Dessert" to test filtering */}
-            <Menu dishes={dishes} category="Main" />
+            <Menu dishes={dishes} />
         </div>
     );
 }
