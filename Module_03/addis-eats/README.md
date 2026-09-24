@@ -1,14 +1,9 @@
-# Addis Eats – Static React Menu
+# Addis Eats
 
-A static menu page built with React + Vite. Renders a list of Ethiopian dishes using reusable components.
-
-## How to run
-1. Clone the repo.
-2. Run `npm install`.
-3. Run `npm run dev`.
-4. Open `http://localhost:5173`.
-
-## Technologies
-- React 18
-- Vite
-- JSX
+## Day 27 - Props & Rendering Patterns
+- Implemented PropTypes for type checking and documentation.
+- Added default props for `currency`.
+- Created a reusable `Card` wrapper using the `children` prop.
+- Implemented conditional rendering for the "Spicy" badge using `&&`.
+- Created a `Menu` component that filters dishes by category and renders an empty state.
+- Rendered lists using `map` and stable `id` keys.
