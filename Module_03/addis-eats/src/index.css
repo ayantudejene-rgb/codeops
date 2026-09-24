@@ -71,3 +71,18 @@
   background: #bdc3c7;
   cursor: not-allowed;
 }
+.badge {
+  background: #e74c3c;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 0.8em;
+  margin-left: 10px;
+}
+.checkout-panel {
+  border: 2px solid #2c3e50;
+  padding: 16px;
+  border-radius: 8px;
+  margin-top: 24px;
+  background: #f9f9f9;
+}

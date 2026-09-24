@@ -1,10 +1,14 @@
+import CartBadge from "./CartBadge";
+import TotalDishes from "./TotalDishes";
+
 function Header() {
-    return (
-        <header>
-            <h1>🍽️ Addis Eats</h1>
-            <p>Authentic Ethiopian flavours, delivered to your door.</p>
-        </header>
-    );
+  return (
+    <header>
+      <h1>Addis Eats</h1>
+      <CartBadge />
+      <TotalDishes />
+    </header>
+  );
 }
 
 export default Header;

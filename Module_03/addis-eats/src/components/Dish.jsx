@@ -1,12 +1,11 @@
-import { useState } from "react";
 import PropTypes from "prop-types";
+import { useCart } from "../context/CartProvider";
 
-function Dish({ name, price, currency = "ETB", spicy = false, onAdd }) {
-  const [count, setCount] = useState(0);
+function Dish({ id, name, price, currency = "ETB", spicy = false }) {
+  const { dispatch } = useCart();
 
   function handleAdd() {
-    setCount(count + 1);
-    if (onAdd) onAdd(price); // Notify parent to update total
+    dispatch({ type: "add", dish: { id, name, price } });
   }
 
   return (
@@ -17,19 +16,17 @@ function Dish({ name, price, currency = "ETB", spicy = false, onAdd }) {
       <p>
         {price} {currency}
       </p>
-      <button onClick={handleAdd}>
-        Add ({count})
-      </button>
+      <button onClick={handleAdd}>Add to Cart</button>
     </div>
   );
 }
 
 Dish.propTypes = {
+  id: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   price: PropTypes.number.isRequired,
   currency: PropTypes.string,
   spicy: PropTypes.bool,
-  onAdd: PropTypes.func,
 };
 
 export default Dish;
