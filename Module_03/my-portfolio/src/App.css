@@ -218,15 +218,6 @@ a {
   margin-right: 8px;
 }
 
-.circle-decoration {
-  position: absolute;
-  width: 380px;
-  height: 380px;
-  border: 1px solid #353541;
-  border-radius: 50%;
-  transform: rotate(20deg);
-}
-
 .floating-card {
   position: absolute;
   right: -20px;
