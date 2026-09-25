@@ -8,6 +8,7 @@ const AREAS = ["Bole", "Kazanchis", "Megenagna", "Piassa"];
 export default function OrderForm() {
   const { items, total, clear } = useCart();
 
+  // 1. One state object for the whole form
   const [form, setForm] = useState({
     name: "",
     phone: "",
@@ -20,11 +21,14 @@ export default function OrderForm() {
   const [serverError, setServerError] = useState(null);
   const [succeeded, setSucceeded] = useState(false);
 
+  // 2. Derived errors — recalculated on every render, never stored
   const errors = validate(form);
   const hasErrors = Object.keys(errors).length > 0;
 
+  // 3. Show an error only after the field has been visited
   const showError = (field) => touched[field] && errors[field];
 
+  // 4. One handler for every field (computed key + updater form)
   function handleChange(e) {
     const { name, value } = e.target;
     setForm((f) => ({ ...f, [name]: value }));
@@ -35,15 +39,18 @@ export default function OrderForm() {
     setTouched((t) => ({ ...t, [name]: true }));
   }
 
+  // 5. Submit — guard against double orders, keep values on failure
   async function handleSubmit(e) {
     e.preventDefault();
     if (submitting) return;
 
     if (hasErrors || items.length === 0) {
+      // Focus the first invalid field
       const firstError = Object.keys(errors)[0];
       if (firstError) {
         document.getElementById(firstError)?.focus();
       }
+      // Reveal every error so the person can see what is stopping them
       setTouched({ name: true, phone: true, area: true, notes: true });
       return;
     }
@@ -57,13 +64,16 @@ export default function OrderForm() {
       setForm({ name: "", phone: "", area: "Bole", notes: "" });
       setTouched({});
     } catch (err) {
+      // 6. Failure: keep every value, show the reason, don't clear the form
       setServerError(err.message);
+      // Focus the first field that caused the failure (phone in our mock)
       document.getElementById("phone")?.focus();
     } finally {
       setSubmitting(false);
     }
   }
 
+  // Nothing to order yet
   if (items.length === 0 && !succeeded) {
     return (
       <div className="checkout-panel">
@@ -135,7 +145,7 @@ export default function OrderForm() {
             )}
           </div>
 
-          {/* Area */}
+          {/* Area (select) */}
           <div>
             <label htmlFor="area">Delivery area</label>
             <select
@@ -160,7 +170,7 @@ export default function OrderForm() {
             )}
           </div>
 
-          {/* Notes */}
+          {/* Notes (optional) */}
           <div>
             <label htmlFor="notes">Notes (optional)</label>
             <textarea

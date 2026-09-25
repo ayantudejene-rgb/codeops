@@ -1,21 +1,19 @@
-import { NavLink } from "react-router-dom";
+import CartBadge from "./CartBadge";
+import Nav from "./Nav";
+import ErrorBoundary from "./ErrorBoundary";
+import CartUnavailable from "./CartUnavailable";
 
-const linkStyle = ({ isActive }) => ({
-  marginRight: "14px",
-  textDecoration: "none",
-  color: isActive ? "#e74c3c" : "#2c3e50",
-  fontWeight: isActive ? "bold" : "normal",
-  borderBottom: isActive ? "2px solid #e74c3c" : "none",
-  paddingBottom: "2px",
-});
-
-export default function Nav() {
+export default function Header() {
   return (
-    <nav style={{ marginTop: "10px" }}>
-      <NavLink to="/" style={linkStyle} end>Home</NavLink>
-      <NavLink to="/menu" style={linkStyle}>Menu</NavLink>
-      <NavLink to="/cart" style={linkStyle}>Cart</NavLink>
-      <NavLink to="/checkout" style={linkStyle}>Checkout</NavLink>
-    </nav>
+    <header style={{ padding: "16px", borderBottom: "1px solid #ddd" }}>
+      <h1 style={{ margin: 0 }}>
+        Addis Eats{" "}
+        {/* Exercise 3 */}
+        <ErrorBoundary fallback={<span className="badge badge-err">Cart ?</span>}>
+          <CartBadge />
+        </ErrorBoundary>
+      </h1>
+      <Nav />
+    </header>
   );
 }
