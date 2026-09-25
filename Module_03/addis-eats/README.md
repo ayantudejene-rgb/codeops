@@ -14,3 +14,9 @@
 - Header cart badge & checkout panel read cart without prop drilling.
 - Provider value memoised with `useMemo`.
 - `React.memo` on DishList and `useCallback` on category handler for performance.
+## Day 31 - Addis Eats, Routed
+
+- Nested routes with a shared `Layout` (Header + Nav + Outlet + Footer).
+- `NavLink` highlights the active tab.
+- Category filter stored in the URL via `useSearchParams` (shareable).
+- `RequireAuth` guards `/checkout` and returns the user to it after login.
