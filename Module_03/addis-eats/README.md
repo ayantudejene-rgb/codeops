@@ -20,3 +20,18 @@
 - `NavLink` highlights the active tab.
 - Category filter stored in the URL via `useSearchParams` (shareable).
 - `RequireAuth` guards `/checkout` and returns the user to it after login.
+## Day 32 - Cart Moved to a Zustand Store
+
+### What lives where, and why
+- Cart (`store/cartStore.js`, Zustand):Many components need it, it changes on every click,
+  and it must survive a full page reload. Zustand's selectors prevent unrelated re-renders, and
+  `persist` middleware writes to localStorage automatically.
+- Auth (`context/AuthContext.jsx`): The session changes rarely and only a few screens read it.
+  Context with a guarded `useAuth` hook is simpler than a store here.
+- Theme (`context/ThemeContext.jsx`): Changes almost never; context is the right tool.
+
+### Changes from Day 31
+- Deleted `CartProvider.jsx` and `cartReducer.js`. No provider above the router.
+- `useCart()` (in `hooks/useCart.js`) is now backed by the Zustand store.
+- Every consumer uses a narrow selector (e.g. `useCartStore(s => s.addItem)`).
+- Cart persists across refresh via the `addis-eats-cart` localStorage key.

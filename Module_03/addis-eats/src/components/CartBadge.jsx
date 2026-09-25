@@ -1,6 +1,7 @@
-import { useCart } from "../context/CartProvider";
+import { useCartStore } from "../store/cartStore";
 
 export default function CartBadge() {
-  const { items } = useCart();
-  return <span className="badge">Cart: {items.length}</span>;
+  // Select only what we need
+  const count = useCartStore((s) => s.items.length);
+  return <span className="badge">Cart: {count}</span>;
 }

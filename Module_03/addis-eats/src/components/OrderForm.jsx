@@ -1,10 +1,10 @@
 import { useState } from "react";
-import { useCart } from "../context/CartProvider";
+import { useCart } from "../hooks/useCart";
 
 function OrderForm() {
   const [form, setForm] = useState({ name: "", phone: "", area: "Bole" });
   const [submitted, setSubmitted] = useState(false);
-  const { items, total, dispatch } = useCart();
+  const { items, total, clear } = useCart();
 
   function handleChange(e) {
     const { name, value } = e.target;
@@ -18,7 +18,7 @@ function OrderForm() {
     e.preventDefault();
     if (isValidPhone && form.name && items.length > 0) {
       setSubmitted(true);
-      dispatch({ type: "clear" });
+      clear();
       setTimeout(() => setSubmitted(false), 3000);
     }
   }
@@ -40,7 +40,7 @@ function OrderForm() {
       <form className="order-form" onSubmit={handleSubmit}>
         <div>
           <label>Name: </label>
-          <input name="name" value={form.name} onChange={handleChange} placeholder="Your name" required />
+          <input name="name" value={form.name} onChange={handleChange} required />
         </div>
         <div>
           <label>TeleBirr Phone: </label>

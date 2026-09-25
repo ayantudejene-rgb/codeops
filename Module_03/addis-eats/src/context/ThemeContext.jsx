@@ -12,5 +12,9 @@ export function ThemeProvider({ children }) {
 }
 
 export function useTheme() {
-  return useContext(ThemeContext);
+  const ctx = useContext(ThemeContext);
+  if (ctx === null) {
+    throw new Error("useTheme must be used inside a ThemeProvider");
+  }
+  return ctx;
 }

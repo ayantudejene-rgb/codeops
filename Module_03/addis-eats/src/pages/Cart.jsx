@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
-import { useCart } from "../context/CartProvider";
+import { useCart } from "../hooks/useCart";
 
 export default function Cart() {
-  const { items, total, dispatch } = useCart();
+  const { items, total, remove } = useCart();
 
   if (items.length === 0) {
     return (
@@ -19,9 +19,7 @@ export default function Cart() {
         {items.map((item, index) => (
           <li key={index} style={{ marginBottom: "6px" }}>
             {item.name} — {item.price} ETB{" "}
-            <button onClick={() => dispatch({ type: "remove", id: item.id })}>
-              Remove
-            </button>
+            <button onClick={() => remove(item.id)}>Remove</button>
           </li>
         ))}
       </ul>

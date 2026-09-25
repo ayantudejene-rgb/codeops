@@ -1,11 +1,12 @@
 import PropTypes from "prop-types";
-import { useCart } from "../context/CartProvider";
+import { useCartStore } from "../store/cartStore";
 
 function Dish({ id, name, price, currency = "ETB", spicy = false }) {
-  const { dispatch } = useCart();
+  // Narrow selector: only re-render if addItem changes (never happens)
+  const addItem = useCartStore((s) => s.addItem);
 
   function handleAdd() {
-    dispatch({ type: "add", dish: { id, name, price } });
+    addItem({ id, name, price });
   }
 
   return (

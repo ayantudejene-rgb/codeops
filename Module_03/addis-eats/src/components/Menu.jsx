@@ -3,7 +3,7 @@ import { useSearchParams } from "react-router-dom";
 import CategoryBar from "./CategoryBar";
 import DishList from "./DishList";
 import { useFetch } from "../hooks/useFetch";
-import { useCart } from "../context/CartProvider";
+import { useCart } from "../hooks/useCart";
 
 function Menu() {
   const [params, setParams] = useSearchParams();
@@ -13,9 +13,7 @@ function Menu() {
   const searchInputRef = useRef(null);
 
   const handleSelectCategory = useCallback(
-    (cat) => {
-      setParams({ category: cat });
-    },
+    (cat) => setParams({ category: cat }),
     [setParams]
   );
 
@@ -38,18 +36,10 @@ function Menu() {
         ref={searchInputRef}
         type="text"
         placeholder="Search dishes..."
-        style={{
-          marginBottom: "10px",
-          padding: "8px",
-          width: "100%",
-          boxSizing: "border-box",
-        }}
+        style={{ marginBottom: "10px", padding: "8px", width: "100%", boxSizing: "border-box" }}
       />
-
       <CategoryBar selected={category} onSelect={handleSelectCategory} />
-
       <DishList dishes={dishes} />
-
       <p style={{ marginTop: "16px" }}>
         <strong>Running total: {total} ETB</strong>
       </p>
