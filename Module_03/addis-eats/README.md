@@ -35,3 +35,21 @@
 - `useCart()` (in `hooks/useCart.js`) is now backed by the Zustand store.
 - Every consumer uses a narrow selector (e.g. `useCartStore(s => s.addItem)`).
 - Cart persists across refresh via the `addis-eats-cart` localStorage key.
+## Day 33 - The Addis Eats Checkout
+### Form features
+- one state object for `name`, `phone`, `area`, `notes` — one `handleChange` for all fields.
+- **Pure `validate(form)`** in `src/utils/validate.js`, derived on every render.
+- Touched tracking — an error only appears after the field is blurred,
+  then updates live as the value is corrected.
+- Accessible — every field has a real `<label htmlFor>`, plus `aria-invalid`,
+  `aria-describedby`, and `role="alert"` on each error message.
+- Submitting state — the button is disabled and reads `Sending...`;
+  otherwise it shows the ETB total.
+- Failure path — the mock server (`src/utils/placeOrder.js`) rejects if
+  the name contains "fail". The form keeps every value and focuses the first
+  invalid field.
+
+# Testing the failure path
+Type `fail` in the Name field and submit. You will see the server error,
+your phone and area will still be filled in, and focus will move back to the
+phone input.

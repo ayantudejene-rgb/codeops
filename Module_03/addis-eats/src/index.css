@@ -1,88 +1,36 @@
-.category-bar {
-  display: flex;
-  gap: 8px;
-  margin-bottom: 16px;
-  flex-wrap: wrap;
+.order-form label {
+  font-weight: 600;
+  margin-bottom: 4px;
+  display: block;
 }
 
-.chip {
-  padding: 6px 14px;
-  border: 1px solid #ccc;
-  border-radius: 20px;
-  background: white;
-  cursor: pointer;
-  font-size: 14px;
-}
-
-.chip.on {
-  background: #2c3e50;
-  color: white;
-  border-color: #2c3e50;
-}
-
-.order-total {
-  margin-top: 20px;
-  padding: 12px;
-  background: #f4f4f4;
-  border-radius: 8px;
-  font-weight: bold;
-}
-
-.order-form {
-  margin-top: 24px;
-  padding: 16px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  max-width: 400px;
-}
-
-.order-form div {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-
-.order-form input, .order-form select {
+.order-form input,
+.order-form select,
+.order-form textarea {
   padding: 8px;
   border: 1px solid #ccc;
   border-radius: 4px;
+  font-size: 14px;
+  font-family: inherit;
+  width: 100%;
+  box-sizing: border-box;
 }
 
-.err {
-  color: red;
-  font-size: 0.85em;
-  margin: 0;
+.order-form input[aria-invalid="true"],
+.order-form select[aria-invalid="true"] {
+  border-color: #e74c3c;
+  background: #fdf2f2;
 }
 
-.order-form button {
+.order-form textarea {
+  resize: vertical;
+}
+
+.success {
+  color: #27ae60;
+  font-weight: 600;
   padding: 10px;
-  background: #2ecc71;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-weight: bold;
-}
-
-.order-form button:disabled {
-  background: #bdc3c7;
-  cursor: not-allowed;
-}
-.badge {
-  background: #e74c3c;
-  color: white;
-  padding: 4px 8px;
-  border-radius: 12px;
-  font-size: 0.8em;
-  margin-left: 10px;
-}
-.checkout-panel {
-  border: 2px solid #2c3e50;
-  padding: 16px;
-  border-radius: 8px;
-  margin-top: 24px;
-  background: #f9f9f9;
+  background: #eafaf1;
+  border-radius: 6px;
+  border: 1px solid #27ae60;
 }
