@@ -21,7 +21,7 @@ function App() {
       </main>
 
       <footer>
-        <p>© 2026 Ayantu. Built with React.</p>
+        <p>© 2026 Ayantu.</p>
       </footer>
     </div>
   );
