@@ -2,24 +2,35 @@ function Projects() {
   const projects = [
     {
       number: "01",
-      title: "3 DOF robotic arm",
+      title: "Addis-Eats",
       description:
-        "A 3 DOF robotic arm for pick and place purpose for small interprises which is cost effective and reliable.",
-      technologies: "MathLab",
+        "An interactive Ethiopian food delivery app built with React — menu, cart, checkout and delivery form, all driven by state.",
+      technologies: "Node.js • React • API • Zustand",
+      liveLink: "https://addis-eats-ashen.vercel.app",
+      githubLink: "https://github.com/ayantudejene-rgb/codeops/tree/main/Module_03/addis-eats",
     },
     {
       number: "02",
+      title: "MedFinder Ethiopia",
+      description:
+        "A React application that helps users discover health centers and useful healthcare information.",
+      technologies: "React • API • JavaScript • CSS",
+      liveLink: "https://codeops-react-data-driven-app.vercel.app",
+      githubLink: "https://github.com/ayantudejene-rgb/codeops/tree/main/Module_03/healthguide-ethiopia",
+    },
+    {
+      number: "03",
       title: "Personal Finance Tracker",
       description:
         "A Python application designed to help users manage income, expenses and personal finances.",
       technologies: "Python • Logic • Data",
     },
     {
-      number: "03",
-      title: "Web Development Project",
+      number: "01",
+      title: "3 DOF robotic arm",
       description:
-        "A responsive web project focused on creating a clean and engaging user experience.",
-      technologies: "HTML • CSS • JavaScript",
+        "A 3 DOF robotic arm for pick and place purpose for small interprises which is cost effective and reliable.",
+      technologies: "MathLab",
     },
   ];
 
@@ -50,7 +61,7 @@ function Projects() {
               </span>
 
               <span className="project-arrow">
-                
+                ↗
               </span>
 
             </div>
@@ -64,7 +75,29 @@ function Projects() {
               <span className="technologies">
                 {project.technologies}
               </span>
+              <div className="project-links">
 
+                {project.liveLink && (
+                  <a
+                    href={project.liveLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Live Demo ↗
+                  </a>
+                )}
+
+                {project.githubLink && (
+                  <a
+                    href={project.githubLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    GitHub ↗
+                  </a>
+                )}
+
+              </div>
             </div>
 
           </div>

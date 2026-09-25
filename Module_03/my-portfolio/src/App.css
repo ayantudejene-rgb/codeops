@@ -599,3 +599,23 @@ footer {
     letter-spacing: -3px;
   }
 }
+.project-links {
+  display: flex;
+  gap: 15px;
+  margin-top: 25px;
+}
+
+.project-links a {
+  display: inline-block;
+  padding: 10px 18px;
+  border: 1px solid #3a3a45;
+  border-radius: 25px;
+  font-size: 13px;
+  transition: 0.3s;
+}
+
+.project-links a:hover {
+  background: #a78bfa;
+  color: #0b0b0f;
+  border-color: #a78bfa;
+}
