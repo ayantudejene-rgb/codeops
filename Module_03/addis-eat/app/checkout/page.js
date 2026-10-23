@@ -1,17 +1,16 @@
-import Link from "next/link";
 import { cookies } from "next/headers";
-import CheckoutButton from "./CheckoutButton";
+import CheckoutForm from "./CheckoutForm";
 
 export default async function CheckoutPage() {
+  // Reading cookies makes this route dynamic
   const cookieStore = await cookies();
   const session = cookieStore.get("session");
 
   return (
     <main>
       <h1>Checkout</h1>
-      {session ? <p>Logged in</p> : <p>Guest checkout</p>}
-      <CheckoutButton />
-      <Link href="/">Home</Link>
+      <p>{session ? "Logged in" : "Guest checkout"}</p>
+      <CheckoutForm />
     </main>
   );
 }
