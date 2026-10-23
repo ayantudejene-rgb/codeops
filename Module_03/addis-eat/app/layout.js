@@ -1,5 +1,6 @@
 import Link from "next/link";
 import "./globals.css";
+import { Providers } from "./providers";
 
 export const metadata = {
   title: "Addis Eats",
@@ -19,10 +20,11 @@ export default function RootLayout({ children }) {
           </nav>
         </header>
         
-        {children}
+        {/* Providers is a client component, but children stays server-rendered */}
+        <Providers>{children}</Providers>
 
         <footer>
-          <p>© 2026 Addis Eats. All rights reserved.</p>
+          <p>© 2026 Addis Eats</p>
         </footer>
       </body>
     </html>

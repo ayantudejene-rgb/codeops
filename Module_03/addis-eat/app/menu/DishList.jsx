@@ -1,18 +1,10 @@
-import Link from "next/link";
+import DishCard from "./DishCard";
 
-const dishes = [
-  { id: "kitfo", name: "Kitfo" },
-  { id: "doro-wat", name: "Doro Wat" },
-  { id: "shiro", name: "Shiro" },
-];
-
-export default function DishList() {
+export default function DishList({ dishes }) {
   return (
     <ul>
       {dishes.map((dish) => (
-        <li key={dish.id}>
-          <Link href={`/menu/${dish.id}`}>{dish.name}</Link>
-        </li>
+        <DishCard key={dish.id} dish={dish} />
       ))}
     </ul>
   );
