@@ -1,14 +1,16 @@
-import Link from "next/link";
+import { Suspense } from "react";
 import DishList from "./DishList";
-import CategoryBar from "./CategoryBar";
+
+// Revalidate at most once an hour
+export const revalidate = 3600;
 
 export default function MenuPage() {
   return (
     <main>
       <h1>Menu</h1>
-      <CategoryBar />
-      <DishList />
-      <Link href="/cart">Go to cart</Link>
+      <Suspense fallback={<p>Loading dishes...</p>}>
+        <DishList />
+      </Suspense>
     </main>
   );
 }
