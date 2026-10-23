@@ -26,11 +26,11 @@ function Contact() {
 
       <div className="social-links">
 
-        <a href="#" target="_blank">
+        <a href="https://github.com/ayantudejene-rgb" target="_blank">
           GitHub 
         </a>
 
-        <a href="#" target="_blank">
+        <a href="www.linkedin.com/in/ayantu-dejene-911desta" target="_blank">
           LinkedIn 
         </a>
 
