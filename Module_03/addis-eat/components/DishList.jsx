@@ -1,4 +1,4 @@
-import DishCard from "./DishCard";
+import DishCard from "@/components/DishCard";
 
 export default function DishList({ dishes }) {
   return (

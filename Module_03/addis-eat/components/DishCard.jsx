@@ -1,5 +1,5 @@
 import Link from "next/link";
-import AddToCartButton from "./AddToCartButton";
+import AddToCartButton from "@/components/AddToCartButton";
 
 export default function DishCard({ dish }) {
   return (

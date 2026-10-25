@@ -1,6 +1,6 @@
 import { Suspense } from "react";
-import DishList from "./DishList";
-import FilterShell from "./FilterShell";
+import DishList from "@/components/DishList";
+import FilterShell from "@/components/FilterShell";
 
 export const revalidate = 3600;
 
