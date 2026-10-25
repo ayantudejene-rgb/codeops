@@ -63,3 +63,28 @@ export async function cancelOrder(orderId) {
   order.status = "cancelled";
   revalidatePath("/orders");
 }
+
+import { getSession } from "@/lib/session";
+
+export async function cancelOrder(orderId) {
+  // 1. Authentication: Who are you?
+  const user = await getSession();
+  if (!user) {
+    throw new Error("401 Unauthorized: Not signed in");
+  }
+
+  // 2. Find the record
+  const order = db.orders.find((o) => o.id === orderId);
+  if (!order) {
+    throw new Error("404 Not Found: Order does not exist");
+  }
+
+  // 3. Authorisation: Do you own this?
+  if (order.userId !== user.id) {
+    throw new Error("403 Forbidden: Not yours");
+  }
+
+  // 4. Effect
+  order.status = "cancelled";
+  revalidatePath("/orders");
+}
