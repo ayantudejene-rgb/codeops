@@ -116,3 +116,9 @@ Route (app)           Revalidate  Expire
 ƒ  (Dynamic)  server-rendered on demand
 
 PS C:\Users\USER\Desktop\codeops\Module_03\addis-eat>
+
+## Network Tab Observations (Day 41)
+
+- **Typing in Search:** Typing 5 characters rapidly in the menu search box fires only **1 network request**, thanks to the 300ms debounce hook.
+- **Pagination:** Clicking "Next" or "Previous" on the menu does not cause the dish list to flash empty or show a loading spinner, thanks to `keepPreviousData`.
+- **Order Status:** The order status page loads instantly with the server-rendered data (`fallbackData`) and then fires a request every 5 seconds in the background to poll for updates.
