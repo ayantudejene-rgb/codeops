@@ -1,5 +1,7 @@
-import Link from "next/link";
-import CheckoutButton from "./CheckoutButton";
+export const metadata = {
+  title: "Cart",
+  description: "Review your order before checkout.",
+};
 
 export default function CartPage() {
   return (

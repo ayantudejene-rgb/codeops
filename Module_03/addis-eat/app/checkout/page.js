@@ -1,8 +1,11 @@
 import { cookies } from "next/headers";
 import CheckoutForm from "./CheckoutForm";
+export const metadata = {
+  title: "Checkout",
+  description: "Complete your order securely.",
+};
 
 export default async function CheckoutPage() {
-  // Reading cookies makes this route dynamic
   const cookieStore = await cookies();
   const session = cookieStore.get("session");
 
