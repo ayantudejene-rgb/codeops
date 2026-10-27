@@ -1,6 +1,9 @@
-# Data Fetching (SWR)
+# Data Fetching & Queries
 
-| Query / Key | Refresh Rule | Reasoning |
-| `/api/orders/[id]` | `refreshInterval: 5000`, `fallbackData` | Polls every 5 seconds to update the live order status. `fallbackData` ensures the server-rendered initial state shows instantly without a loading spinner. |
-| `/api/dishes?q=[term]` | `keepPreviousData: true`, `null` key if empty | Debounced by 300ms to prevent a request per keystroke. `null` key prevents fetching when the search box is empty. `keepPreviousData` stops the list from flashing empty while typing. |
-| `/api/dishes?page=[page]` | `keepPreviousData: true`, `fallbackData` (page 1) | URL-driven pagination. `fallbackData` makes the initial page fast. `keepPreviousData` avoids flashing while navigating between pages. |
+| Query / Data | Server or Client | Key / Refresh Rule | Reasoning |
+| :--- | :--- | :--- | :--- |
+| **Menu & Dishes** | Server | ISR (`revalidate = 3600`) | Public data, needs SEO. Cached for 1 hour for speed. |
+| **Order History** | Server | Scoped to `session.id` | Private, must be dynamically rendered per user and scoped to their ID. |
+| **Order Status** | Client | `/api/orders/[id]`, `refreshInterval: 5000` | Needs to poll for live updates. Seeded with `fallbackData` from the server to avoid a loading spinner on arrival. |
+| **Menu Search** | Client | `/api/dishes?q=[term]`, `null` key if empty | Triggered by typing. Debounced by 300ms. `keepPreviousData: true` prevents flashing. |
+| **Cart Contents** | Client | Context API (`Providers.jsx`) | Never needs to hit the server until checkout. Persists in browser state. |

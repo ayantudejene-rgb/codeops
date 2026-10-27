@@ -1,15 +1,20 @@
 # Authentication & Authorization Layers
 
-| Route | Middleware | Page Check | Action Check | What it proves |
-| `/checkout` | Yes (Redirects if no cookie) | Yes (Reads cookie for UI) | Yes (PlaceOrder action) | Middleware proves a cookie exists. Page proves who it is. Action proves the request is genuine. |
-| `/orders` | Yes (Redirects if no cookie) | Yes (Scopes DB query to `user.id`) | Yes (`cancelOrder` checks ownership) | Prevents reading or modifying another user's orders. |
-| `/kitchen` | Yes (Redirects if no cookie) | Yes (Checks `role === 'staff'`) | N/A | Prevents customers from accessing staff-only screens. |
+| Route | Protected By | What It Proves |
+| :--- | :--- | :--- |
+| `/menu` | Nothing (Public) | Intentionally public and indexable for SEO. |
+| `/orders` | Middleware + Page + Scoped Query | Middleware proves a cookie exists. Page verifies the session and fetches data. The query scopes to `session.id` so a user can only see their own orders. |
+| `/checkout` | Middleware + Page | Middleware proves a cookie exists. Page verifies the session. The `placeOrder` action re-verifies the session before writing. |
+| `/kitchen` | Middleware + Page + Action | Middleware checks for a cookie. Page checks `role === 'staff'`. |
 
-## The Three Attacks (and why they fail)
+## The Three Attacks (and what stopped them)
 
-1. **Attack:** Call `cancelOrder("ord_123")` from the browser console while signed out.
-   * **Result:** Fails. The action throws `401 Unauthorized` because `getSession()` returns null.
-2. **Attack:** Sign in as Almaz (`usr_1`), but use the console to call `cancelOrder` with an order ID belonging to Staff (`usr_2`).
-   * **Result:** Fails. The action throws `403 Forbidden: Not yours`. Middleware let the request through (Almaz is signed in), but the action verified ownership.
-3. **Attack:** Craft a sign-in link: `/signin?next=https://evil-site.com`.
-   * **Result:** Fails safely. The `signIn` action checks `next.startsWith("/")`. It rejects the absolute URL and redirects to `/` instead.
+1. **Attack 1: Call a server action from the console while signed out.**
+   * *Action:* `await cancelOrder("ord_123")` in the browser console.
+   * *What stopped it:* The `getSession()` check inside `cancelOrder` returned `null` and threw `401 Unauthorized: Not signed in`.
+2. **Attack 2: Sign in as one account and call an action with another account's order ID.**
+   * *Action:* Log in as `customer@addis.com`, then run `await cancelOrder("staff_order_id")` in the console.
+   * *What stopped it:* The authorisation check `if (order.userId !== user.id)` inside `cancelOrder` threw `403 Forbidden: Not yours`.
+3. **Attack 3: Craft a sign-in link pointing at an external site.**
+   * *Action:* Visit `/signin?next=https://evil-site.com` and sign in.
+   * *What stopped it:* The `signIn` action checks `next.startsWith("/")`. It rejected the absolute URL and redirected to `/` instead.
