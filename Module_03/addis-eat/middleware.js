@@ -14,5 +14,5 @@ export function middleware(request) {
 }
 
 export const config = {
-  matcher: ["/checkout", "/orders/:path*", "/kitchen"],
+  matcher: ["/checkout", "/orders/:path*", "/kitchen", "/dashboard", "/tracking/:path*"],
 };
