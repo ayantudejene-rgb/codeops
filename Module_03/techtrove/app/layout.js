@@ -6,7 +6,7 @@ import { Providers } from "./providers";
 const inter = Inter({ subsets: ["latin"], display: "swap" });
 
 export const metadata = {
-  metadataBase: new URL("https://techtrove.vercel.app"),
+  metadataBase: new URL("https://techtrove-omega.vercel.app/"),
   title: { template: "%s - TechTrove", default: "TechTrove - Premium Electronics" },
   description: "Shop the latest laptops, phones, and audio gear.",
 };
